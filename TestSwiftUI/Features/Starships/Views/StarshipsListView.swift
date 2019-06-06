@@ -21,7 +21,7 @@ struct StarshipsView : View {
                 ForEach(viewModel.starshipViewModelArray) { starshipViewModel in
                     StarshipViewCell(viewModel: starshipViewModel)
                 }
-            }.navigationBarTitle(Text("Starship"), displayMode: .large)
+            }.navigationBarTitle(Text(viewModel.viewTitle), displayMode: .large)
         }
     }
 }

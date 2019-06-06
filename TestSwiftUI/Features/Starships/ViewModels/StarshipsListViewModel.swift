@@ -20,10 +20,6 @@ class StarshipsListViewModel: BindableObject {
         }
     }
     
-    var viewTitle: String = "Starships" {
-        didSet {
-            didChange.send(self)
-        }
-    }
+    var viewTitle: String = "Starships"
 
 }
