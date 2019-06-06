@@ -8,10 +8,27 @@
 
 import SwiftUI
 
-class StarshipRepository: NSObject, Identifiable {
+var starshipViewModelDataSourceArray: [StarshipViewModel] = getStarships()
+
+func getStarships() -> [StarshipViewModel]  {
     
-    func getStarships() {
-        
+    #if DEBUG
+        return getMockingData()
+    #endif
+    
+    // TODO : Call to service
+    return []
+    
+}
+
+func getMockingData() -> [StarshipViewModel]  {
+    
+    var starshipViewModelMockArray: [StarshipViewModel] = []
+    let names: [String] = ["La nave mes xunga del mon", "Interestellar", "OMG My nave", "Tu nave"]
+    
+    for name in names {
+        starshipViewModelMockArray.append(StarshipViewModel(name: name))
     }
 
+    return starshipViewModelMockArray
 }

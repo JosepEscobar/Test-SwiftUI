@@ -18,7 +18,7 @@ struct StarshipsView : View {
             // Tabla
             List{
                 //Iteración
-                ForEach(viewModel.starshipViewModel) { starshipViewModel in
+                ForEach(viewModel.starshipViewModelArray) { starshipViewModel in
                     StarshipViewCell(viewModel: starshipViewModel)
                 }
             }.navigationBarTitle(Text("Starship"), displayMode: .large)
@@ -29,7 +29,7 @@ struct StarshipsView : View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        return StarshipsView()
+        StarshipsView().environmentObject(StarshipsListViewModel())
     }
 }
 #endif

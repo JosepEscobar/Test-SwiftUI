@@ -14,7 +14,7 @@ class StarshipsListViewModel: BindableObject {
     let didChange = PassthroughSubject<StarshipsListViewModel, Never>()
     
     
-    var starshipViewModel: [StarshipViewModel] = [] {
+    var starshipViewModelArray: [StarshipViewModel] = starshipViewModelDataSourceArray {
         didSet {
             didChange.send(self)
         }
