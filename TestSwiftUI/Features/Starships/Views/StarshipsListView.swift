@@ -10,7 +10,7 @@ import SwiftUI
 
 struct StarshipsView : View {
     
-    var viewModel = StarshipsListViewModel()
+    @EnvironmentObject var viewModel: StarshipsListViewModel
     
     var body: some View {
         // NavigationController
@@ -18,10 +18,10 @@ struct StarshipsView : View {
             // Tabla
             List{
                 //Iteración
-                ForEach(viewModel.starshipViewModel) { starshipViewModel in
+                ForEach(viewModel.starshipViewModelArray) { starshipViewModel in
                     StarshipViewCell(viewModel: starshipViewModel)
                 }
-            }.navigationBarTitle(Text("Starship"), displayMode: .large)
+            }.navigationBarTitle(Text(viewModel.viewTitle), displayMode: .large)
         }
     }
 }
@@ -29,16 +29,7 @@ struct StarshipsView : View {
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
-        let starshipViewModel1 = StarshipViewModel(name: "000233")
-        let starshipViewModel2 = StarshipViewModel(name: "000233")
-        
-        let starshipViewModel: [StarshipViewModel] = [starshipViewModel1, starshipViewModel2]
-        
-        let viewTitle: String = "Hola mundo"
-        
-        let viewModelMock = StarshipsListViewModel(starshipViewModel: starshipViewModel, viewTitle: viewTitle)
-        
-        return StarshipsView(viewModel: viewModelMock)
+        StarshipsView().environmentObject(StarshipsListViewModel())
     }
 }
 #endif

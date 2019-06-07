@@ -7,20 +7,19 @@
 //
 
 import SwiftUI
+import Combine
 
-class StarshipsListViewModel: NSObject, Identifiable {
+class StarshipsListViewModel: BindableObject {
     
-    var starshipViewModel: [StarshipViewModel]
-    var viewTitle: String
+    let didChange = PassthroughSubject<StarshipsListViewModel, Never>()
     
-    override init() {
-        self.starshipViewModel = []
-        self.viewTitle = ""
+    
+    var starshipViewModelArray: [StarshipViewModel] = starshipViewModelDataSourceArray {
+        didSet {
+            didChange.send(self)
+        }
     }
     
-    init(starshipViewModel: [StarshipViewModel], viewTitle: String) {
-        self.starshipViewModel = starshipViewModel
-        self.viewTitle = viewTitle
-    }
+    var viewTitle: String = "Starships"
 
 }
